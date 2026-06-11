@@ -167,6 +167,7 @@
   .pick.reverse .pick-text  { order: 1; }
   .pick.portrait { grid-template-columns: 360px 1fr; }
 
+  .pick-image a { display: block; cursor: zoom-in; }
   .pick-image img {
     width: 100%;
     display: block;
@@ -175,7 +176,7 @@
     filter: sepia(6%) contrast(1.04);
     transition: filter 0.3s;
   }
-  .pick-image img:hover { filter: sepia(0%) contrast(1.06); }
+  .pick-image a:hover img { filter: sepia(0%) contrast(1.06); }
   .pick-image .filename {
     font-family: 'IM Fell English SC', serif;
     font-size: 11px;
@@ -660,5 +661,14 @@
   </footer>
 
 </div>
+<script>
+  document.querySelectorAll('.pick-image img').forEach(img => {
+    const a = document.createElement('a');
+    a.href = img.src;
+    a.target = '_blank';
+    img.parentNode.insertBefore(a, img);
+    a.appendChild(img);
+  });
+</script>
 </body>
 </html>
